@@ -10,12 +10,12 @@ from datetime import (
 BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 
 # Pasta frontend (HTML e JS)
-FRONTEND_DIR = os.path.join(BASE_DIR, "frontend")
+FRONTEND_DIR = os.path.join(BASE_DIR, "Front-end")
 
 # Pasta static (CSS)
-STATIC_DIR = os.path.join(BASE_DIR, "static")
+STATIC_DIR = os.path.join(BASE_DIR, "Static")
 
-DB_DIR = os.path.joi(os.path.dirname(__file__), "..", "db")
+DB_DIR = os.path.join(os.path.dirname(__file__), "..", "db")
 EXCEL_FILE = os.path.join(DB_DIR, "Clientes.xlsx")
 
 COLUMNS = [
@@ -34,13 +34,11 @@ def init_excel():
         os.makedirs(DB_DIR)
 
     if not os.path.exists(EXCEL_FILE):
-        workbook = openpyxl.workbook()
+        workbook = openpyxl.Workbook()
         sheet = workbook.active
         sheet.title = "Clientes"
         sheet.append(COLUMNS)
         workbook.save(EXCEL_FILE)
-
-
 
 app = Flask(__name__, static_folder=STATIC_DIR, static_url_path="/" + STATIC_DIR)
 
